@@ -6,6 +6,8 @@ with open("clave.key", "rb") as key_file:
 
 cipher_suite = Fernet(key)
 
+
+
 def leer_credenciales():
     credenciales = {}
     with open("credenciales.txt", "r") as file:
@@ -17,6 +19,8 @@ def leer_credenciales():
             aprobado = cipher_suite.decrypt(aprobado.encode()).decode()
             credenciales[correo] = (contrasena, tipo_usuario, aprobado)
     return credenciales
+
+credenciales_globales = leer_credenciales()
 
 def escribir_credenciales(correo, contrasena, tipo_usuario, aprobado="False"):
     correo_encrypted = cipher_suite.encrypt(correo.encode()).decode()
@@ -235,10 +239,11 @@ def inicio(page: ft.Page):
         nonlocal usuario_logueado
         correo = correo_field.value
         contrasena = contrasena_field.value
+        credenciales = credenciales_globales
         if correo in credenciales and contrasena == credenciales[correo][0]:
             tipo_usuario = credenciales[correo][1]
             aprobado = credenciales[correo][2]
-            if aprobado == "False":
+            if aprobado == "True":
                 usuario_logueado = (correo, tipo_usuario)
                 page.clean()
                 if tipo_usuario == "Centro de Ayuda":
@@ -294,13 +299,17 @@ def inicio(page: ft.Page):
           contrasena, tipo_usuario, _ = credenciales[correo]
           credenciales[correo] = (contrasena, tipo_usuario, "True")
           with open("credenciales.txt", "w") as file:
-              for correo, (contrasena, tipo_usuario, aprobado) in credenciales.items():
-                  correo_encrypted = cipher_suite.encrypt(correo.encode()).decode()
-                  contrasena_encrypted = cipher_suite.encrypt(contrasena.encode()).decode()
-                  tipo_usuario_encrypted = cipher_suite.encrypt(tipo_usuario.encode()).decode()
-                  aprobado_encrypted = cipher_suite.encrypt(aprobado.encode()).decode()
-                  file.write(f"{correo_encrypted},{contrasena_encrypted},{tipo_usuario_encrypted},{aprobado_encrypted}\n")
-
+            for correo, (contrasena, tipo_usuario, aprobado) in credenciales.items():
+                correo_encrypted = cipher_suite.encrypt(correo.encode()).decode()
+                contrasena_encrypted = cipher_suite.encrypt(contrasena.encode()).decode()
+                tipo_usuario_encrypted = cipher_suite.encrypt(tipo_usuario.encode()).decode()
+                aprobado_encrypted = cipher_suite.encrypt(aprobado.encode()).decode()
+                file.write(f"{correo_encrypted},{contrasena_encrypted},{tipo_usuario_encrypted},{aprobado_encrypted}\n")
+        # Actualizar credenciales en memoria
+        global credenciales_globales
+        credenciales_globales = leer_credenciales()
+        # Actualizar la interfaz de usuario
+        mostrar_aprobacion_usuarios(None)
     def mostrar_aprobacion_usuarios(e):
         page.clean()
         credenciales = leer_credenciales()
