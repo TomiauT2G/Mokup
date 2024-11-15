@@ -276,6 +276,30 @@ def inicio(page: ft.Page):
         else:
             page.add(ft.Text("Credenciales incorrectas", color="red"))
         page.update()
+    def desaprobar_usuario(correo):
+        credenciales = leer_credenciales()
+        if correo in credenciales:
+          contrasena, tipo_usuario, _ = credenciales[correo]
+          credenciales[correo] = (contrasena, tipo_usuario, "False")
+          with open("credenciales.txt", "w") as file:
+              for correo, (contrasena, tipo_usuario, aprobado) in credenciales.items():
+                  correo_encrypted = cipher_suite.encrypt(correo.encode()).decode()
+                  contrasena_encrypted = cipher_suite.encrypt(contrasena.encode()).decode()
+                  tipo_usuario_encrypted = cipher_suite.encrypt(tipo_usuario.encode()).decode()
+                  aprobado_encrypted = cipher_suite.encrypt(aprobado.encode()).decode()
+                  file.write(f"{correo_encrypted},{contrasena_encrypted},{tipo_usuario_encrypted},{aprobado_encrypted}\n")
+    def aprobar_usuario(correo):
+        credenciales = leer_credenciales()
+        if correo in credenciales:
+          contrasena, tipo_usuario, _ = credenciales[correo]
+          credenciales[correo] = (contrasena, tipo_usuario, "True")
+          with open("credenciales.txt", "w") as file:
+              for correo, (contrasena, tipo_usuario, aprobado) in credenciales.items():
+                  correo_encrypted = cipher_suite.encrypt(correo.encode()).decode()
+                  contrasena_encrypted = cipher_suite.encrypt(contrasena.encode()).decode()
+                  tipo_usuario_encrypted = cipher_suite.encrypt(tipo_usuario.encode()).decode()
+                  aprobado_encrypted = cipher_suite.encrypt(aprobado.encode()).decode()
+                  file.write(f"{correo_encrypted},{contrasena_encrypted},{tipo_usuario_encrypted},{aprobado_encrypted}\n")
 
     def mostrar_aprobacion_usuarios(e):
         page.clean()
