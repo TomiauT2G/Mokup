@@ -1,5 +1,5 @@
-Maria Lopez,98765432-1,123456789,ana@example.com,Felicitación,Baja,Servicio C,Problema C,Área 2,Ejecutivo 3,Resuelto,Observación B
-Ana Gomez,12345678-9,987654321,carlos@example.com,Reclamo,Media,Servicio D,Problema A,Área 4,Ejecutivo 4,No aplicable,Observación D
+Maria Lopez,98765432-1,123456789,ana@example.com,Felicitación,Baja,No Aplica,No Aplica,Área 2,Ejecutivo 3,No aplicable,Buen Trabajo
+Ana Gomez,12345678-9,987654321,carlos@example.com,Reclamo,Media,Servicio D,Problema A,Área 4,Ejecutivo 4,Resuelto,Observación D
 Maria Lopez,98765432-1,987654321,carlos@example.com,Felicitación,Baja,Servicio D,Problema C,Área 1,Ejecutivo 2,No aplicable,Observación B
 Juan Perez,11223344-5,987654321,juan@example.com,Consulta,Baja,Servicio C,Problema A,Área 3,Ejecutivo 2,A resolución,Observación D
 Carlos Sanchez,12345678-9,123456789,juan@example.com,Consulta,Media,Servicio A,Problema B,Área 2,Ejecutivo 2,A resolución,Observación D
@@ -18,3 +18,13 @@ Maria Lopez,11223344-5,556677889,ana@example.com,Reclamo,Media,Servicio C,Proble
 Maria Lopez,55667788-0,112233445,ana@example.com,Consulta,Media,Servicio D,Problema C,Área 3,Ejecutivo 3,No aplicable,Observación C
 Juan Perez,12345678-9,112233445,maria@example.com,Problema,Alta,Servicio D,Problema D,Área 3,Ejecutivo 3,Resuelto,Observación A
 Juan Perez,98765432-1,112233445,juan@example.com,Felicitación,Alta,Servicio A,Problema A,Área 2,Ejecutivo 1,Resuelto,Observación B
+Manuel Manue,12345678-9,556677889,carlos@example.com,Problema,Media,Servicio B,Problema B,Área 4,Ejecutivo 4,Resuelto,Observación A
+Carlos Sanchez,98765432-1,112233445,ana@example.com,Felicitación,Baja,Servicio A,Problema A,Área 3,Ejecutivo 3,A resolución,Observación C
+Tomas Bravo,55667788-0,112233445,carlos@example.com,Felicitación,Alta,Servicio D,Problema C,Área 1,Ejecutivo 4,No aplicable,Observación A
+Manuel Manue,55667788-0,123456789,juan@example.com,Felicitación,Baja,Servicio A,Problema D,Área 3,Ejecutivo 2,A resolución,Observación D
+Manuel Manue,55667788-0,556677889,ana@example.com,Reclamo,Media,Servicio C,Problema B,Área 3,Ejecutivo 1,No aplicable,Observación C
+Ana Gomez,12345678-9,556677889,maria@example.com,Felicitación,Media,Servicio D,Problema D,Área 2,Ejecutivo 1,Resuelto,Observación B
+Maria Lopez,55667788-0,112233445,carlos@example.com,Consulta,Baja,Servicio B,Problema D,Área 4,Ejecutivo 3,A resolución,Observación D
+Yolanda Rivera,98765432-1,112233445,juan@example.com,Felicitación,Media,Servicio C,Problema C,Área 4,Ejecutivo 3,Resuelto,Observación B
+Carlos Sanchez,98765432-1,556677889,carlos@example.com,Felicitación,Baja,Servicio C,Problema D,Área 4,Ejecutivo 3,No aplicable,Observación C
+Yolanda Rivera,11223344-5,987654321,juan@example.com,Reclamo,Media,Servicio C,Problema A,Área 1,Ejecutivo 4,No aplicable,Observación D

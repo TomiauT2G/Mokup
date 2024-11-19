@@ -2,7 +2,7 @@ import random
 
 
 def generar_ticket_falso():
-    nombres_clientes = ["Juan Perez", "Maria Lopez", "Carlos Sanchez", "Ana Gomez"]
+    nombres_clientes = ["Juan Perez", "Maria Lopez", "Carlos Sanchez", "Ana Gomez","Tomas Bravo","Benjamin Saravia","Manuel Manue","Yolanda Rivera"]
     ruts_clientes = ["12345678-9", "98765432-1", "11223344-5", "55667788-0"]
     telefonos = ["123456789", "987654321", "112233445", "556677889"]
     correos = ["juan@example.com", "maria@example.com", "carlos@example.com", "ana@example.com"]

@@ -37,11 +37,10 @@ def inicio(page: ft.Page):
         page.add(ft.OutlinedButton("Volver", on_click=volver_atras, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=0))))
         page.update()
 
-
     def mostrar_tickets(e):
         page.clean()
         tickets = leer_tickets()
-        headers = ["Nombre del Cliente", "Tipo de Tique", "Criticidad"]
+        headers = ["Nombre del Cliente", "Tipo de Tique", "Criticidad", "Detalles"]
         table = ft.DataTable(
             columns=[ft.DataColumn(ft.Text(header)) for header in headers],
             rows=[
@@ -49,10 +48,13 @@ def inicio(page: ft.Page):
                     cells=[
                         ft.DataCell(ft.Text(t[0])),  # Nombre del Cliente
                         ft.DataCell(ft.Text(t[4])),  # Tipo de Tique
-                        ft.DataCell(ft.Text(t[5]))   # Criticidad
+                        ft.DataCell(ft.Text(t[5])),  # Criticidad
+                        ft.DataCell(ft.OutlinedButton("Ver Detalles",
+                                                      on_click=lambda e, index=i: mostrar_detalles_ticket(e, index)))
+                        # Botón para ver detalles
                     ]
                 )
-                for t in tickets
+                for i, t in enumerate(tickets)
             ]
         )
         scrollable_container = ft.ListView(
@@ -60,7 +62,8 @@ def inicio(page: ft.Page):
             expand=True
         )
         page.add(scrollable_container)
-        page.add(ft.OutlinedButton("Volver", on_click=mostrar_pagina_principal, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=0))))
+        page.add(ft.OutlinedButton("Volver", on_click=mostrar_pagina_principal,
+                                   style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=0))))
         page.update()
 
     def mostrar_nuevo_ticket(e):
@@ -127,7 +130,8 @@ def inicio(page: ft.Page):
     def mostrar_detalles_ticket(e, index):
         page.clean()
         tickets = leer_tickets()
-        nombre_cliente, rut_cliente, telefono, correo, tipo_tique, criticidad, detalle_servicio, detalle_problema, area_derivar, ejecutivo_abre, estado, observacion = tickets[index]
+        nombre_cliente, rut_cliente, telefono, correo, tipo_tique, criticidad, detalle_servicio, detalle_problema, area_derivar, ejecutivo_abre, estado, observacion = \
+        tickets[index]
         nombre_cliente_field = ft.TextField(label="Nombre del Cliente", value=nombre_cliente)
         rut_cliente_field = ft.TextField(label="RUT del Cliente", value=rut_cliente)
         telefono_field = ft.TextField(label="Teléfono", value=telefono)
@@ -184,7 +188,8 @@ def inicio(page: ft.Page):
             page.add(ft.Text("Ticket actualizado", color="green"))
             page.update()
 
-        actualizar_boton = ft.OutlinedButton("Actualizar Ticket", on_click=actualizar, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=0)))
+        actualizar_boton = ft.OutlinedButton("Actualizar Ticket", on_click=actualizar,
+                                             style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=0)))
         page.add(ft.Column([
             ft.Text("Detalles del Ticket", size=20, weight="bold"),
             nombre_cliente_field,
@@ -200,7 +205,8 @@ def inicio(page: ft.Page):
             observacion_field,
             actualizar_boton
         ]))
-        page.add(ft.OutlinedButton("Volver", on_click=mostrar_tickets, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=0))))
+        page.add(ft.OutlinedButton("Volver", on_click=mostrar_tickets,
+                                   style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=0))))
         page.update()
 
     def button_clicked(e):
@@ -344,7 +350,8 @@ def inicio(page: ft.Page):
 
     def mostrar_tickets_filtrados(tickets):
         page.clean()
-        headers = ["Nombre del Ejecutivo", "Fecha de Creación", "Tipo de Tique", "Criticidad", "Área de Destino", "Estado"]
+        headers = ["Nombre del Ejecutivo", "Fecha de Creación", "Tipo de Tique", "Criticidad", "Área de Destino",
+                   "Estado", "Detalles"]
         table = ft.DataTable(
             columns=[ft.DataColumn(ft.Text(header)) for header in headers],
             rows=[
@@ -355,10 +362,13 @@ def inicio(page: ft.Page):
                         ft.DataCell(ft.Text(t[4])),  # Tipo de Tique
                         ft.DataCell(ft.Text(t[5])),  # Criticidad
                         ft.DataCell(ft.Text(t[8])),  # Área de Destino
-                        ft.DataCell(ft.Text(t[10]))  # Estado
+                        ft.DataCell(ft.Text(t[10])),  # Estado
+                        ft.DataCell(ft.OutlinedButton("Ver Detalles",
+                                                      on_click=lambda e, index=i: mostrar_detalles_ticket(e, index)))
+                        # Botón para ver detalles
                     ]
                 )
-                for t in tickets
+                for i, t in enumerate(tickets)
             ]
         )
         scrollable_container = ft.ListView(
@@ -366,7 +376,8 @@ def inicio(page: ft.Page):
             expand=True
         )
         page.add(scrollable_container)
-        page.add(ft.OutlinedButton("Volver", on_click=mostrar_filtro_tickets, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=0))))
+        page.add(ft.OutlinedButton("Volver", on_click=mostrar_filtro_tickets,
+                                   style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=0))))
         page.update()
 
     correo_field = ft.TextField(label="Correo", hint_text="Correo", width=300)
